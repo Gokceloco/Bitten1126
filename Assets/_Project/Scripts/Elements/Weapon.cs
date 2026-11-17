@@ -16,7 +16,7 @@ public class Weapon : MonoBehaviour
 
     void SpawnBullet()
     {
-        var newBullet = Instantiate(bulletPrefab);
+        var newBullet = Instantiate(bulletPrefab, GameDirector.instance.levelManager.GetCurrentLevel().transform);
         newBullet.transform.position = bulletPlaceHolder.position;
         newBullet.transform.LookAt(transform.position + transform.forward * 10);
     }
