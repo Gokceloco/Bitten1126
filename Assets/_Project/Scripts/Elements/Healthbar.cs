@@ -2,15 +2,14 @@ using UnityEngine;
 
 public class Healthbar : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public Transform fillBarPivot;
+    public void SetHealth(float ratio)
     {
-        
+        fillBarPivot.localScale = new Vector3(ratio, 1, 1);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void LateUpdate()
     {
-        
+        transform.LookAt(transform.position + Vector3.back);
     }
 }
