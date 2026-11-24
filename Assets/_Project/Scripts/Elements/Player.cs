@@ -18,9 +18,26 @@ public class Player : MonoBehaviour
     private bool _isTouchingGround;
     private int _currentJumpCount;
 
+    public int startHealth;
+    private int _currentHealth;
+
+    public Healthbar healthBar;
+
     public void RestartPlayer()
     {
+        gameObject.SetActive(true);
         transform.position = Vector3.zero;
+        _currentHealth = startHealth;
+        healthBar.SetHealth(1);
+    }
+    public void GetHit()
+    {
+        _currentHealth--;
+        healthBar.SetHealth((float)_currentHealth / startHealth);
+        if (_currentHealth <= 0)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     private void Update()
@@ -118,5 +135,7 @@ public class Player : MonoBehaviour
         yVelocity.z = 0;
 
         rb.linearVelocity = _direction.normalized * speed + yVelocity;
-    }    
+    }
+
+    
 }
